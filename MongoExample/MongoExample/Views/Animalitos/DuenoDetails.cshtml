@@ -1,0 +1,36 @@
+﻿@model MongoExample.Modelo.MisColecciones.Propietario
+
+@{
+    ViewBag.Title = "DuenoDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DuenoDetails</h2>
+
+<div>
+    <h4>Propietario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Animalito", "Details", new { id = ViewBag.ElAnimalitoConsultado }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+
+</p>

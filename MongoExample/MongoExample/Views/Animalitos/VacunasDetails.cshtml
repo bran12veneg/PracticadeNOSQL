@@ -1,0 +1,36 @@
+﻿@model MongoExample.Modelo.MisColecciones.Vacunas
+
+@{
+    ViewBag.Title = "VacunasDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>VacunasDetails</h2>
+
+<div>
+    <h4>Vacunas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Efectos Secundarios", "efectos", new { id = ViewBag.ElAnimalitoConsultado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
