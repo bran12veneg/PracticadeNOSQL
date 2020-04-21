@@ -19,35 +19,23 @@ namespace MongoExample.Negocio
             return client;
         }
 
-        public MongoClient ConnectWithAuthentication(string dbName = "ecommlight", string userName = "some_user", string password = "pwd", string servername = "localhost", int portnumber = 27017)
-        {
-            var credentials = MongoCredential.CreateCredential(dbName, userName, password);
-            MongoClientSettings clientSettings = new MongoClientSettings()
-            {
-                Credentials = new[] { credentials
-                },
-                Server = new MongoServerAddress(servername, portnumber)
-            };
-            MongoClient client = new MongoClient(clientSettings);
-            return client;
-        }
 
         public MongoClient GetMongoClient(string hostName) 
         { 
-            string connectionString = string.Format("mongodb://bran:123@cluster0-shard-00-00-rirzj.azure.mongodb.net:27017,cluster0-shard-00-01-rirzj.azure.mongodb.net:27017,cluster0-shard-00-02-rirzj.azure.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", hostName); 
+            string connectionString = string.Format("mongodb+srv://bran:123@cluster0-rirzj.azure.mongodb.net/test?retryWrites=true&w=majority", hostName); 
             return new MongoClient(connectionString);
         }
 
         public IMongoDatabase GetDatabaseReference(string hostName, string dbName) 
         { 
-            MongoClient client = GetMongoClient("mongodb://bran:123@cluster0-shard-00-00-rirzj.azure.mongodb.net:27017,cluster0-shard-00-01-rirzj.azure.mongodb.net:27017,cluster0-shard-00-02-rirzj.azure.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"); 
+            MongoClient client = GetMongoClient("mongodb+srv://bran:123@cluster0-rirzj.azure.mongodb.net/test?retryWrites=true&w=majority"); 
             IMongoDatabase database = client.GetDatabase(dbName); 
             return database; 
         }
 
         public IMongoDatabase CreateDatabase(string hostName, string databaseName, string collectionName) 
         { 
-            MongoClient client = GetMongoClient("mongodb://bran:123@cluster0-shard-00-00-rirzj.azure.mongodb.net:27017,cluster0-shard-00-01-rirzj.azure.mongodb.net:27017,cluster0-shard-00-02-rirzj.azure.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"); 
+            MongoClient client = GetMongoClient("mongodb+srv://bran:123@cluster0-rirzj.azure.mongodb.net/test?retryWrites=true&w=majority"); 
             IMongoDatabase database = client.GetDatabase(databaseName); 
             database.CreateCollection(collectionName); 
             return database; 

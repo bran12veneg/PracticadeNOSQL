@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +11,21 @@ using System.Threading.Tasks;
 namespace MongoExample.Modelo.MisColecciones
 {
 
-    /*
-     * Datos para insertar:
-     * 
-     * {"_id":{"$oid":"5e5dbfd07cce9902c09374b4"},"nombre":"firulais","tipo":"perro","dueno":{"nombre":"hector","apellido":"fernandez","email":"hecferme@gmail.com"},"fecha_nacimiento":{"$date":{"$numberLong":"1577858400000"}}}
-     * 
-     * {"_id":{"$oid":"5e5dc047ed49f602c09dc5e8"},"nombre":"firulais segundo","fecha_nacimiento":{"$date":{"$numberLong":"1423116000000"}},"tipo":"perro","dueno":{"nombre":"hector 2","apellido":"fernandez 2","email":"hecferme@gmail.com"}}
-     */
-
     [BsonIgnoreExtraElements]
     public class Animalito
     {
         [BsonId]
         public ObjectId _id;
+
+
         [BsonElement("nombre")]
         public string nombre { get; set; }
         [BsonElement("especie")]
+        [Display(Name = "Especie")]
         public string  tipo { get; set; }
         [BsonElement("fecha_nacimiento")]
+        [Display(Name = "Fecha de Nacimiento")]
+        [DataType(DataType.Date)]
         public DateTime fecha_nacimiento { get; set; }
         [BsonElement("vacunas")]
         public Vacunas LasVacunas { get; set; }

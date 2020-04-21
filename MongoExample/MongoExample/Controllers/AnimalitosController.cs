@@ -1,6 +1,10 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoExample.Modelo;
+using MongoExample.Modelo.MisColecciones;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,7 +17,7 @@ namespace MongoExample.Controllers
         public ActionResult Index()
         {
             var elRepositorio = new MongoExample.Negocio.Repositorio.Animalitos();
-            var laListaDeAnimalitos = elRepositorio.ListarTodos("mongodb://bran:123@cluster0-shard-00-00-rirzj.azure.mongodb.net:27017,cluster0-shard-00-01-rirzj.azure.mongodb.net:27017,cluster0-shard-00-02-rirzj.azure.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", "prueba");
+            var laListaDeAnimalitos = elRepositorio.ListarTodos("mongodb+srv://bran:123@cluster0-rirzj.azure.mongodb.net/test?retryWrites=true&w=majority", "prueba");
             return View(laListaDeAnimalitos);
         }
 
@@ -77,18 +81,19 @@ namespace MongoExample.Controllers
 
         // POST: Animalitos/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Animalito animalito)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var hostname = "mongodb+srv://bran:123@cluster0-rirzj.azure.mongodb.net/test?retryWrites=true&w=majority";
+                var Client = new MongoClient(hostname);
+                var DB = Client.GetDatabase("prueba");
+                var collection = DB.GetCollection<Animalito>("animalitos");
+                collection.InsertOneAsync(animalito);
                 return RedirectToAction("Index");
+
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: Animalitos/Edit/5

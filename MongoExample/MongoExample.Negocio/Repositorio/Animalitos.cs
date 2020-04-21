@@ -27,7 +27,7 @@ namespace MongoExample.Negocio.Repositorio
         private IMongoCollection<Animalito> ObtenerColeccionDeAnimalitos()
         {
             var laConexion = new Conexion();
-            var db = laConexion.GetDatabaseReference("mongodb://bran:123@cluster0-shard-00-00-rirzj.azure.mongodb.net:27017,cluster0-shard-00-01-rirzj.azure.mongodb.net:27017,cluster0-shard-00-02-rirzj.azure.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", _dbName);
+            var db = laConexion.GetDatabaseReference("mongodb+srv://bran:123@cluster0-rirzj.azure.mongodb.net/test?retryWrites=true&w=majority", _dbName);
             var collection = db.GetCollection<Animalito>(_collName);
             return collection;
         }
@@ -36,7 +36,7 @@ namespace MongoExample.Negocio.Repositorio
             (string nombreDelHost, string dbName)
         {
             var elCliente = new Conexion();
-            var laBaseDeDatos = elCliente.GetDatabaseReference("mongodb://bran:123@cluster0-shard-00-00-rirzj.azure.mongodb.net:27017,cluster0-shard-00-01-rirzj.azure.mongodb.net:27017,cluster0-shard-00-02-rirzj.azure.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", dbName);
+            var laBaseDeDatos = elCliente.GetDatabaseReference("mongodb+srv://bran:123@cluster0-rirzj.azure.mongodb.net/test?retryWrites=true&w=majority", dbName);
             var laColeccion = laBaseDeDatos.GetCollection<Animalito>("animalitos");
             var filter = new BsonDocument();
             var elResultado = laColeccion.Find<Animalito>(filter).ToList();
