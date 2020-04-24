@@ -8,9 +8,17 @@
 
 <h2>Lista de Animalitos</h2>
 
+@using (Html.BeginForm("DetailsAnimal", "Animalitos"))
+{
+    <label>Nombre</label>
+    <input type="text" name="nombre" />
+
+    <button type="submit">Buscar</button>
+}
+
 @Html.ActionLink("Insertar Nuevo Animalito", "Create", null, new { @class = "btn btn-success" })
 
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.nombre)
@@ -52,3 +60,5 @@
     }
 
 </table>
+
+

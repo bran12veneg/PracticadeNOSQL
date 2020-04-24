@@ -393,6 +393,7 @@
     <Content Include="Views\Animalitos\VacunasDetails.cshtml" />
     <Content Include="Views\Animalitos\efectos.cshtml" />
     <Content Include="Views\Animalitos\Create.cshtml" />
+    <Content Include="Views\Animalitos\DetailsAnimal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

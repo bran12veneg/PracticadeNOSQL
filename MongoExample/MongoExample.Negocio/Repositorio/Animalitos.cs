@@ -44,12 +44,13 @@ namespace MongoExample.Negocio.Repositorio
             return elResultado;
         }
 
-        public IList<Animalito> ListarAnimalitosPorNombre(string elNombre)
+       
+
+        public Animalito ListarAnimalitosPorNombre(string elNombre)
         {
-            var losAnimalitos = ObtenerColeccionDeAnimalitos();
-            /* Filter to retrieve movies where the name equals to "elNombre" */
+            var losAnimalitos = ObtenerColeccionDeAnimalitos();           
             var expresssionFilter = Builders<Animalito>.Filter.Eq(x => x.nombre, elNombre);
-            var result = losAnimalitos.Find(expresssionFilter).ToList();
+            var result = losAnimalitos.Find(expresssionFilter).ToList().FirstOrDefault();
             return result;
         }
 

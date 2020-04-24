@@ -54,14 +54,7 @@ namespace MongoExample.Controllers
             return View();
         }
 
-        //public ActionResult VacunasEfectosDetails(string id)
-        //{
-        //    var elIdOriginal = new ObjectId(id);
-        //    ViewBag.ElAnimalitoConsultado = id;
-        //    var elRepositorio = new MongoExample.Negocio.Repositorio.Animalitos();
-        //    var vacunas = elRepositorio.verEfectosSecundarios(elIdOriginal);
-        //    return View(vacunas);
-        //}
+   
 
         // GET: Animalitos/Details/5
         public ActionResult Details(string id)
@@ -70,6 +63,16 @@ namespace MongoExample.Controllers
             ViewBag.ElAnimalitoConsultado = id;
             var elRepositorio = new MongoExample.Negocio.Repositorio.Animalitos();
             var elAnimalito = elRepositorio.ObtenerAnimalitoPorId(elIdOriginal);
+            return View(elAnimalito);
+        }
+
+
+        // GET: Animalitos/Details/5
+        public ActionResult DetailsAnimal(string nombre)
+        {
+            ViewBag.ElAnimalitoConsultado = nombre;
+            var elRepositorio = new MongoExample.Negocio.Repositorio.Animalitos();
+            var elAnimalito = elRepositorio.ListarAnimalitosPorNombre(nombre);
             return View(elAnimalito);
         }
 
